@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 
-/* usage
-const [state, setState] = useSetState({
-  bug: false,
-  isError: true,
-});
+const PATCH = '@action_types/PATCH';
 
-setState({ bug: true });
-setState({ isError: false }, () => ref.focus());
-*/
+const reducer = (state, action) => {
+  if ( action.type === PATCH ) {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  }
+};
 
 const useSetState = (initState) => {
-  const [_state, _setState] = useState(initState);
+  const [_state, _dispatch] = useReducer(reducer, initState);
+  const _patchState = update => _dispatch({ type: PATCH, payload: update });
 
-  const setState = (arg) => {
-    if ( typeof arg === 'function' ) {
-
-    }
+  const setState = (update) => {
     const newState = {
       ..._state,
       ...update,
     };
 
-    _setState(newState);
+    _patchState(newState);
   };
 
   return [_state, setState];
