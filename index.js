@@ -26,3 +26,5 @@ const useSetState = (initState) => {
 
   return [_state, setState];
 };
+
+export default useSetState;
