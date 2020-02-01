@@ -3,6 +3,10 @@ import { useReducer } from 'react';
 const PATCH = '@action_types/PATCH';
 const DERIVE = '@action_types/DERIVE';
 
+const isObject = (arg) => {
+  return arg === Object(arg) && !Array.isArray(arg);
+};
+
 const reducer = (state, action) => {
   switch ( action.type ) {
     case PATCH:
@@ -27,8 +31,13 @@ const useSetState = (initState) => {
   const setState = (arg) => {
     if ( typeof arg === 'function' ) {
       _deriveState(arg);
-    } else {
+    } else if ( isObject(arg) ) {
       _patchState(arg);
+    } else {
+      throw Error(
+        'Invalid argument type passed to setState. Argument must either be a plain object or' +
+        'an updater function.'
+      );
     }
   };
 
