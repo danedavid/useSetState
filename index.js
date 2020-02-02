@@ -1,7 +1,9 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect, useRef } from 'react';
 
 const PATCH = '@action_types/PATCH';
 const DERIVE = '@action_types/DERIVE';
+
+const noop = () => {};
 
 const isObject = (arg) => {
   return arg === Object(arg) && !Array.isArray(arg);
@@ -25,10 +27,21 @@ const reducer = (state, action) => {
 
 const useSetState = (initState) => {
   const [_state, _dispatch] = useReducer(reducer, initState);
+
   const _patchState = update => _dispatch({ type: PATCH, payload: update });
   const _deriveState = updater => _dispatch({ type: DERIVE, updater });
 
-  const setState = (arg) => {
+  const _setStateCallback = useRef();
+
+  useEffect(() => {
+    if ( typeof _setStateCallback.current === 'function' ) {
+      _setStateCallback.current();
+    }
+    _setStateCallback.current = noop;
+  }, [_state]);
+
+  const setState = (arg, callback = noop) => {
+    _setStateCallback.current = callback;
     if ( typeof arg === 'function' ) {
       _deriveState(arg);
     } else if ( isObject(arg) ) {
