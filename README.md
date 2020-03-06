@@ -5,12 +5,12 @@
 ### Demo: [codesandbox](https://codesandbox.io/s/usesetstate-nej3z)
 
 - Supports updater function or simple object as first argument:
-```
+```JSX
 setState({ count: 0 });
 setState(prev => ({ count: prev.count + 1 }));
 ```
 - Supports optional callback as second parameter:
-```
+```JSX
 setState(
   { text: ev.target.value },
   () => inputRef.current.focus()
@@ -19,7 +19,7 @@ setState(
 
 ### Usage
 
-```
+```JSX
 import React from "react";
 import useSetState from "useSetState";
 
