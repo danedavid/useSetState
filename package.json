@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "react": "^16.8.0"
+  },
   "author": "Dane David <dndavid102@gmail.com> (https://github.com/danedavid)",
   "license": "MIT"
 }
