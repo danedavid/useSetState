@@ -1,7 +1,7 @@
 {
   "name": "@danedavid/usesetstate",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Dead simple React Hook that can replace this.setState",
   "main": "index.js",
   "peerDependencies": {
     "react": "^16.8.0"
@@ -9,6 +9,12 @@
   "devDependencies": {
     "react": "^16.8.0"
   },
+  "keywords": ["react", "react-hooks"],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/danedavid/useSetState"
+  },
+  "homepage": "https://github.com/danedavid/useSetState",
   "author": "Dane David <dndavid102@gmail.com> (https://github.com/danedavid)",
   "license": "MIT"
 }
