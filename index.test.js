@@ -42,7 +42,7 @@ describe('useSetState', () => {
         />
       </div>
     );
-  }
+  };
 
   test('initial state', () => {
     const wrapper = shallow(<App/>);
@@ -92,5 +92,21 @@ describe('useSetState', () => {
     langButton.simulate('click');
     expect(wrapper.find('#count').text()).toBe('2');
     expect(wrapper.find('#greeting').text()).toBe(SPANISH_GREETING);
-  })
+  });
+
+  const InvalidApp = () => {
+    const [state, setState] = useSetState(3);
+    return null;
+  };
+
+  const ValidApp = () => {
+    const [state, setState] = useSetState(null);
+    return null;
+  };
+
+  test('state should be plain object or null', () => {
+    expect(() => shallow(<InvalidApp />)).toThrow();
+    expect(() => shallow(<App />)).not.toThrow();
+    expect(() => shallow(<ValidApp />)).not.toThrow();
+  });
 });
