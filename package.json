@@ -1,6 +1,6 @@
 {
   "name": "@danedavid/usesetstate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dead simple React Hook that can replace this.setState",
   "main": "index.js",
   "scripts": {
