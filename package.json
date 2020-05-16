@@ -1,20 +1,39 @@
 {
   "name": "@danedavid/usesetstate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dead simple React Hook that can replace this.setState",
   "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
   "peerDependencies": {
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "react": "^16.8.0"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-jest": "^26.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^25.2.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.13.1"
   },
-  "keywords": ["react", "react-hooks"],
+  "keywords": [
+    "react",
+    "react-hooks"
+  ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/danedavid/useSetState"
+    "type": "git",
+    "url": "https://github.com/danedavid/useSetState"
   },
   "homepage": "https://github.com/danedavid/useSetState",
   "author": "Dane David <dndavid102@gmail.com> (https://github.com/danedavid)",
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "testMatch": [
+      "**.test.js"
+    ]
+  }
 }

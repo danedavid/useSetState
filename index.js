@@ -26,6 +26,12 @@ const reducer = (state, action) => {
 };
 
 const useSetState = (initState) => {
+  if ( !isObject(initState) && initState !== null ) {
+    throw Error(
+      'Invalid argument type passed to useSetState. Initial state must be an object or null.'
+    );
+  }
+
   const [_state, _dispatch] = useReducer(reducer, initState);
 
   const _patchState = update => _dispatch({ type: PATCH, payload: update });
