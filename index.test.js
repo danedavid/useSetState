@@ -1,6 +1,6 @@
 import React from 'react';
 import useSetState from './index';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -108,5 +108,27 @@ describe('useSetState', () => {
     expect(() => shallow(<InvalidApp />)).toThrow();
     expect(() => shallow(<App />)).not.toThrow();
     expect(() => shallow(<ValidApp />)).not.toThrow();
+  });
+
+  const App2 = ({ callback }) => {
+    const [state, setState] = useSetState({ error: false });
+
+    return (
+      <button
+        id="btn"
+        onClick={() => setState({ error: true }, callback)}
+      />
+    );
+  };
+
+  test('should invoke callback', () => {
+    const mock = jest.fn();
+    // full DOM rendering to enable effects
+    const wrapper = mount(<App2 callback={mock} />);
+
+    expect(mock).not.toHaveBeenCalled();
+    wrapper.find('#btn').simulate('click');
+    expect(mock).toHaveBeenCalled();
+    expect(mock).toHaveBeenCalledTimes(1);
   });
 });
